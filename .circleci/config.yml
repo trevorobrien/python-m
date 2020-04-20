@@ -88,13 +88,13 @@ jobs:
           command: |
             docker login -u$DOCKERHUB_LOGIN -p$DOCKERHUB_PASSWORD
             docker push trevorobrien/test-cci:$CIRCLE_SHA1
-      - run:
-          name: Setup Heroku
-          command: |
-            chmod +x .circleci/setup-heroku.sh
-            .circleci/setup-heroku.sh
-      - run:
-          name: Deploy to Heroku
-          command: |
-            cd app/
-            git push heroku master
+      # - run:
+      #     name: Setup Heroku
+      #     command: |
+      #       chmod +x .circleci/setup-heroku.sh
+      #       .circleci/setup-heroku.sh
+      # - run:
+      #     name: Deploy to Heroku
+      #     command: |
+      #       cd app/
+      #       git push heroku master

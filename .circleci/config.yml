@@ -1,34 +1,9 @@
-# version: 2.1
-
-# orbs:
-#   python: circleci/python@0.2.1
-#   heroku: circleci/heroku@1.0.1
-
-# jobs:
-#   build-and-test:
-#     executor: python/default
-#     steps:
-#       - checkout
-#       - python/load-cache
-#       - python/install-deps
-#       - python/save-cache
-#       - run:
-#           command: python -m pytest
-#           name: Test
-
-# workflows:
-#   heroku_deploy:
-#     jobs:
-#       - heroku/deploy-via-git
-#   main:
-#     jobs:
-#       - build-and-test
-
 
 version: 2.1
 
 orbs:
   heroku: circleci/heroku@1.0.1
+
 workflows:
   heroku_deploy:
     jobs:
@@ -88,13 +63,4 @@ jobs:
           command: |
             docker login -u$DOCKERHUB_LOGIN -p$DOCKERHUB_PASSWORD
             docker push trevorobrien/test-cci:$CIRCLE_SHA1
-      # - run:
-      #     name: Setup Heroku
-      #     command: |
-      #       chmod +x .circleci/setup-heroku.sh
-      #       .circleci/setup-heroku.sh
-      # - run:
-      #     name: Deploy to Heroku
-      #     command: |
-      #       cd app/
-      #       git push heroku master
+
